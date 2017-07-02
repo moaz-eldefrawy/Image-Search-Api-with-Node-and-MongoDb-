@@ -15,11 +15,18 @@ app.use(express.static('public'));
 
 // get latest image search
 app.get('/api/latest/imagesearch', function(req, res){
+  res.writeHead(200, {'Content-Type': 'application/json'})
   MongoClient.connect(dbUrl, function(err, db){
-    if(err) console.log("unable to connect to Db");
+    if(err) console.log(dbUrl);
     else{
       var reqColl = db.collection('lastRequests');  
-      reqColl.find().limit(10).toArray(function())
+      reqColl.find().limit(10).toArray(function(err, docs){
+        if(err) console.log("error!! : " + err);
+        else{
+          res.end(JSON.stringify(docs))
+        }
+        db.close()
+      })
     }
   })  
 })
