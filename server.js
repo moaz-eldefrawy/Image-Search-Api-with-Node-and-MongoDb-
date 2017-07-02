@@ -5,7 +5,12 @@
 var express = require('express'),
     mongodb = require('mongodb');
 var app = express(),
-    MongoClient = mongodb.MongoClient;
+    MongoClient = mongodb.MongoClient,
+    dbUrl = "mongodb://first:first@ds147052.mlab.com:47052/records";
+      
+var url = process.env.MONGOLAB_URI;
+url = "1";
+console.log(url);
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
