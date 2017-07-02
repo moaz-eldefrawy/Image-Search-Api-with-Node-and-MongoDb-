@@ -11,7 +11,13 @@ var app = express(),
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
-
+// image searching handling
+app.get('/api/imagesearch/*', function(req, res){
+  var searchReq = req.params[0],
+      offset = req.query.offset;
+  console.log(offset)
+  res.end();
+})
 
 // get latest image search
 app.get('/api/latest/imagesearch', function(req, res){
