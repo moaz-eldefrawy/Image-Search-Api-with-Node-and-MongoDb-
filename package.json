@@ -12,7 +12,8 @@
   "dependencies": {
     "express": "^4.15.3",
     "mongodb": "^2.2.29",
-    "query-string": "^4.3.4"
+    "query-string": "^4.3.4",
+    "node-google-image-search": "^1.0.3"
   },
   "engines": {
     "node": "8.1.x"

@@ -4,10 +4,18 @@
 // init project
 var express = require('express'),
     mongodb = require('mongodb');
+var imageSearch = require('node-google-image-search');
 var app = express(),
     MongoClient = mongodb.MongoClient,
     dbUrl = process.env.dbUrl;
       
+var results = imageSearch('boy', callback, 5, 5);
+ 
+function callback(results) {
+  console.log("this is results:")
+  console.log(results);
+} 
+
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
