@@ -31,6 +31,13 @@ app.get('/api/imagesearch/*', function(req, res){
       }
       answer.push(obj); 
     }  
+    MongoClient.connect(dbUrl, function(err, db){
+      var reqColl = db.collection('lastRequests');
+      var date = new Date();
+      console.log(date);
+      reqColl.insert({"term": searchVal, "when": date});
+      db.close();
+    })
     res.writeHead(200, {'content-type': 'application/json'})
     res.end(JSON.stringify(answer));
   }
