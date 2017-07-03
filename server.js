@@ -21,15 +21,18 @@ app.get('/api/imagesearch/*', function(req, res){
   var results = imageSearch(searchVal, callback, 0, offset);
   function callback(results){
     console.log(results.length);
-    var answer = {};
+    var answer = [];
     for(var i=0; i<results.length; i++){
-      {
-        title: results
+      var obj = {
+        title: results[i].title,
+        link: results[i].link,
+        contextLink: results[i].image.contextLink,
+        "thumbnailLink(bigger image)": results[i].image.thumbnailLink 
       }
-      answer.push()
+      answer.push(obj); 
     }  
     res.writeHead(200, {'content-type': 'application/json'})
-    res.end(JSON.stringify(results));
+    res.end(JSON.stringify(answer));
   }
 })
 
