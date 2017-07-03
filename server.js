@@ -35,7 +35,7 @@ app.get('/api/imagesearch/*', function(req, res){
       var reqColl = db.collection('lastRequests');
       var date = new Date();
       console.log(date);
-      reqColl.insert({"term": searchVal, "when": date});
+      reqColl.insert({"term": searchVal, "when": date}, {"autoIndexId": false});
       db.close();
     })
     res.writeHead(200, {'content-type': 'application/json'})
