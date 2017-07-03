@@ -9,22 +9,19 @@ var app = express(),
     MongoClient = mongodb.MongoClient,
     dbUrl = process.env.dbUrl;
       
-var results = imageSearch('boy', callback, 5, 5);
- 
-function callback(results) {
-  console.log("this is results:")
-  console.log(results);
-} 
-
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
 // image searching handling
 app.get('/api/imagesearch/*', function(req, res){
-  var searchReq = req.params[0],
+  var searchVal = req.params[0],
       offset = req.query.offset;
-  console.log(offset)
-  res.end();
+  console.log(offset);
+  var results = imageSearch(searchVal, callback, 5, offset);
+  function callback(results){  
+    res.writeHead(200, {'content-type': 'application/json'})
+    res.end(JSON.stringify(results));
+  }
 })
 
 // get latest image search
