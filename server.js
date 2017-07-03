@@ -15,10 +15,19 @@ app.use(express.static('public'));
 // image searching handling
 app.get('/api/imagesearch/*', function(req, res){
   var searchVal = req.params[0],
-      offset = req.query.offset;
+      offset = req.query.offset || 10;
+  
   console.log(offset);
-  var results = imageSearch(searchVal, callback, 5, offset);
-  function callback(results){  
+  var results = imageSearch(searchVal, callback, 0, offset);
+  function callback(results){
+    console.log(results.length);
+    var answer = {};
+    for(var i=0; i<results.length; i++){
+      {
+        title: results
+      }
+      answer.push()
+    }  
     res.writeHead(200, {'content-type': 'application/json'})
     res.end(JSON.stringify(results));
   }
